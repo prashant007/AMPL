@@ -19,9 +19,11 @@ library
   -- Modules exported by the library.
   exposed-modules:
     Syntax.TypesAMPL
+    Syntax.STConverter
 
     MyParser.AMPLParserMeta
     MyParser.InterpretAMPL
+
        
     Semantics.AMPL_am
     Semantics.Terminal
@@ -31,7 +33,7 @@ library
 
 
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4, haskell-src-exts, containers, mtl, BNFC-meta,array ==0.4.*,process,stm,network,directory,pretty
+  build-depends:       base >=4, haskell-src-exts, containers, mtl, BNFC-meta,array ==0.4.*,process,stm,network,directory,pretty,GenericPretty
   
   -- Directories containing source files.
   hs-source-dirs:      src
@@ -43,6 +45,6 @@ library
 executable myAMPL
   hs-source-dirs:    src
   main-is       :    Mainfile.hs             
-  build-depends:       base >= 4, BNFC-meta , myAMPL, array ==0.4.*,haskell-src-exts,mtl,process,stm,network,directory,pretty
+  build-depends:       base >= 4, BNFC-meta , myAMPL, array ==0.4.*,haskell-src-exts,mtl,process,stm,network,directory,pretty,GenericPretty
   build-tools:         alex, happy
   default-language: Haskell2010

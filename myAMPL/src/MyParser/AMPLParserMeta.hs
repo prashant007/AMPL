@@ -26,10 +26,10 @@ token UIdent (upper (letter|digit|'_')*) ;
 
 Main  .AMPLCODE ::= HANDLES COHANDLES CONSTRUCTORS DESTRUCTORS PROCESSES FUNCTIONS START ;
 ---------------------------------------------------------------------------------------------
--- An AMPL code file consists of a series of specifcations which can be omitted followed by the code at which one starts.
+ -- An AMPL code file consists of a series of specifcations which can be omitted followed by the code at which one starts.
 -- The specifications are:
 --      Handles: these are handle names associated with a type.  
---      They are hput on output polarity channels and hcased on input polarity channels
+--        They are hput on output polarity channels and hcased on input polarity channels
 --      Cohandles:  these are handle names associated with a type.
 --        They are hput on input polarity channels and hcased on output polarity channels
 --      Constructors (and number of arguments)
@@ -66,7 +66,7 @@ Processes. PROCESSES  ::= "%processes" ":" "{" [PROCESS_SPEC] "}" ;
 Processes_none. PROCESSES ::= ;
 separator PROCESS_SPEC ";" ;
 
-Process_spec. PROCESS_SPEC ::= UIdent "::" [Vars] "|" [Ident] "=>" [Ident] "=" COMS ;
+Process_spec. PROCESS_SPEC ::= UIdent ":" [Vars] "|" [Ident] "=>" [Ident] "=" COMS ;
 
 VName  .Vars ::= Ident ;
 separator Vars ",";
@@ -75,7 +75,7 @@ Functions  .FUNCTIONS ::= "%functions" ":" "{" [FUNCTION_SPEC] "}" ;
 Functions_none .FUNCTIONS ::= ;
 separator FUNCTION_SPEC ";" ;
 
-Function_spec  .FUNCTION_SPEC ::= UIdent "(" [Vars] ")" "=" COMS ;
+Function_spec  .FUNCTION_SPEC ::= UIdent "(" [Vars] ")" "="      ;
  
 Start  .START   ::= "%run" CHANNEL_SPEC ":" COMS ;
 
@@ -85,24 +85,17 @@ Channel_spec .CHANNEL_SPEC ::= "(" [CInteger] "=>" [CInteger] ")";
 Prog    .COMS  ::= "{" [COM] "}"; 
 separator COM ";"  ;
   
-AC_STORE   .COM   ::= "store" ;
 AC_STOREf  .COM   ::= "store" Ident;
-AC_LOAD    .COM   ::= "load" Integer ;
 AC_LOADf   .COM   ::= "load" Ident ;
-AC_RET     .COM   ::= "ret";
 AC_FRET    .COM   ::= "fret" ;
-AC_CALL    .COM   ::= "call" Ident ;
 AC_CALLf   .COM   ::= "call" Ident "(" [Ident] ")" ;
 AC_INT     .COM   ::= "cInt" CInteger ;
 AC_LEQ     .COM   ::= "leq";
-AC_ADD     .COM   ::= "add" ;
-AC_MUL     .COM   ::= "mul" ; 
-AC_CONCAT  .COM   ::= "concat" ;
-AC_REVERSE .COM   ::= "reverse" ;
+AC_ADD     .COM   ::= "add";
+AC_MUL     .COM   ::= "mul";  
 AC_CONS    .COM   ::= "cons" "(" Integer "," Integer ")" ;
 AC_STRUCT  .COM   ::= UIdent "." UIdent ;
 AC_STRUCTas.COM   ::= UIdent "." UIdent "(" [Ident] ")" ;
-AC_CASE    .COM   ::= "case"  "[" [COMS] "]"  ; 
 AC_CASEf   .COM   ::= "case" "of"  "{" [LABELCOMS] "}"  ; 
 Labelcoms . LABELCOMS ::= UIdent "." UIdent ":" COMS ;
 separator COMS ",";
@@ -117,15 +110,11 @@ AC_HPUT    .COM ::= "hput"  CInteger  Integer ;
 AC_HPUTf   .COM ::= "hput" Ident  UIdent "." UIdent;
 AC_HCASE   .COM ::= "hcase" CInteger "of" "[" [COMS] "]"  ; 
 AC_HCASEf  .COM ::= "hcase" Ident "of"  "{" [LABELCOMS] "}"  ; 
-AC_PUT     .COM ::= "put" CInteger ;
 AC_PUTf    .COM ::= "put" Ident ;
 AC_SPLIT   .COM ::= "split" CInteger "into" CInteger  CInteger ;
 AC_SPLITf  .COM ::= "split"Ident "into" Ident Ident    ;
-AC_FORK    .COM ::= "fork" CInteger "as" "{" CInteger "with" [CInteger] "as" COMS ";" CInteger "with" [CInteger] "as" COMS "}" ;
 AC_FORKf   .COM ::= "fork" Ident "as" "{" Ident "with" [Ident] "as" COMS ";" Ident "with" [Ident] "as" COMS "}" ;
-AC_PLUG    .COM ::= "plug" [NCInteger] "as" "{" "[" [CInteger] "]" "with" COMS ";" "[" [CInteger] "]" "with" COMS "}" ;
-AC_PLUGf   .COM ::= "plug" [NIdent] "as" "{" "[" [Ident] "]" "with" COMS ";" "[" [Ident] "]" "with" COMS "}" ;
-AC_RUN     .COM ::= "run" "[" [TRAN] "]" UIdent ;
+AC_PLUGf   .COM ::= "plug" NIdent "as" "{" "[" [Ident] "]" "with" COMS ";" "[" [Ident] "]" "with" COMS "}" ;
 AC_RUNf     .COM ::= "run" UIdent "(" [Ident] "|" [Ident] "=>" [Ident] ")" ;
 
 separator nonempty NCInteger "," ;
@@ -133,15 +122,13 @@ separator nonempty NIdent "," ;
 separator Ident "," ;
 separator TRAN "," ;
 
-TranIn1. TRAN ::= "(" Integer "," "IN" "," Integer ")" ;
-TranIn2. TRAN ::= "(" Integer "," "OUT" "," Integer ")" ;
+TranIn11. TRAN ::= "(" Integer "," "IN" "," Integer ")" ;
+TranIn12. TRAN ::= "(" Integer "," "OUT" "," Integer ")" ;
 
 Ncinteger .NCInteger ::= CInteger ;
 Nident .NIdent ::= Ident ;
 
-AC_CLOSE   .COM ::= "close" CInteger ;
 AC_CLOSEf  .COM ::= "close" Ident ;
-AC_HALT    .COM ::= "halt" CInteger ;
 AC_HALTf   .COM ::= "halt" Ident ;
 
 Positive   .CInteger ::= Integer ;
@@ -150,14 +137,7 @@ separator CInteger "," ;
 
 
 
-
------------------------------------------------------------------------------------
---
--- Comments
---
-------------------------------------------------------------------------------------
-
 comment "--" ;
-comment "{-" "-}" ;   
+comment "{-" "-}" ;
 
 |]

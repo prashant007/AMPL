@@ -1,6 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 module Syntax.TypesAMPL where
-
+import Text.PrettyPrint.GenericPretty
+import Text.PrettyPrint
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
@@ -42,8 +43,10 @@ data AMPLCOM =
         |AMC_DEST Int Int
         |AMC_CONCAT
         |AMC_REVERSE 
-        deriving (Eq,Ord,Show,Read)
+        |AMC_ID CH CH     
+        deriving (Eq,Ord,Show,Read,Generic)
 
+instance () => Out (AMPLCOM)
 ----------------------------------------------------------------------
 --
 --    The values ... the only things on the stack.
@@ -56,7 +59,10 @@ data VAL = V_CLO (AMPLCOMS,ENV)
          | V_CONS(Int,[VAL])
          | V_REC ([AMPLCOMS],ENV)
          | V_BOOL Bool
-          deriving (Eq,Ord,Show,Read)
+         | V_CHAR Char 
+          deriving (Eq,Ord,Show,Read,Generic)
+
+instance () => Out (VAL)
 
 ----------------------------------------------------------------------
 --
@@ -66,8 +72,9 @@ data VAL = V_CLO (AMPLCOMS,ENV)
 
 
 data POLARITY = IN|OUT
-  deriving (Eq,Ord,Show,Read)
+  deriving (Eq,Ord,Show,Read,Generic)
 
+instance () => Out (POLARITY)
 ----------------------------------------------------------------------
 -- The queues ..
 -- Allows many values to be "put" on queues but forking and plitting 
@@ -82,8 +89,9 @@ data QUEUE = Q_PUT VAL QUEUE
            | Q_HALT
            | Q_EMPTY
            | Q_HCASE [AMPLCOMS]
-           deriving (Eq,Ord,Show,Read)
+           deriving (Eq,Ord,Show,Read,Generic)
 
+instance () => Out (QUEUE)
 
 ----------------------------------------------------------------------
 --
@@ -128,27 +136,37 @@ type STRUCTOR_NAME = (String,String)
 
 data AMPLCODE = AMPLcode [HANDLE_SPEC] [HANDLE_SPEC] [STRUCTOR_SPEC] 
                         [STRUCTOR_SPEC] [PROCESS_SPEC] [FUNCTION_SPEC] (CHANNEL_SPEC,[COM])
-   deriving (Eq,Ord,Show,Read )
+   deriving (Eq,Ord,Show,Read,Generic )
 
---instance () => Out (AMPLCODE)  
+instance () => Out (AMPLCODE)  
 
 data CHANNEL_SPEC = Channel_specf [String] [String]
                   | Channel_spec [Int] [Int]
-   deriving (Eq,Ord,Show,Read)
+   deriving (Eq,Ord,Show,Read,Generic)
+
+instance () => Out (CHANNEL_SPEC)
 
 data HANDLE_SPEC = Handle_spec String [String]
-   deriving (Eq,Ord,Show,Read)
+   deriving (Eq,Ord,Show,Read,Generic)
+
+instance () => Out (HANDLE_SPEC)
 
 data STRUCTOR_SPEC = Struct_spec String [(String,Int)]
-   deriving (Eq,Ord,Show,Read)
+   deriving (Eq,Ord,Show,Read,Generic)
+
+instance () => Out (STRUCTOR_SPEC)
 
 data PROCESS_SPEC = Process_specf String [String] ([String],[String]) COMS
                   | Process_spec String ([Int],[Int]) COMS
-   deriving (Eq,Ord,Show,Read)
+   deriving (Eq,Ord,Show,Read,Generic)
+
+instance () => Out (PROCESS_SPEC)
 
 data FUNCTION_SPEC = Function_specf String [String] COMS
                    | Function_spec String COMS
-   deriving (Eq,Ord,Show,Read)
+   deriving (Eq,Ord,Show,Read,Generic)
+
+instance () => Out (FUNCTION_SPEC)
 
 ---------------------------------------------------------------------------------
 --  The commands:
@@ -164,7 +182,6 @@ data COM =
  | AC_CALL String Int
  | AC_CALLf String VARS
  | AC_INT Int
- | AC_STRING String -- experimental
  | AC_LEQ
  | AC_ADD
  | AC_MUL
@@ -187,6 +204,8 @@ data COM =
  | AC_FORKf CHANNEL ((CHANNEL,CHANNELS,COMS),(CHANNEL,CHANNELS,COMS))
  | AC_PLUG [(Int,POLARITY,POLARITY)] ([Int],COMS) ([Int],COMS)
  | AC_PLUGf CHANNEL (CHANNELS,COMS) (CHANNELS,COMS)
+ | AC_ID Int Int
+ | AC_IDf String String
  | AC_CLOSE Int
  | AC_CLOSEf CHANNEL
  | AC_HALT Int
@@ -197,4 +216,6 @@ data COM =
  | AC_RUNf String VARS (CHANNELS,CHANNELS)
  | AC_CONCAT
  | AC_REVERSE
-  deriving (Eq,Ord,Show,Read)
+  deriving (Eq,Ord,Show,Read,Generic)
+
+instance () => Out (COM)

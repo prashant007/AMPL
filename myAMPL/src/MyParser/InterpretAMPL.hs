@@ -26,7 +26,6 @@ data SYM_VALUES = SYM_CONSTR Int Int
                 | SYM_PROCESS Int (Int,Int)
    deriving (Eq,Show)
 
-
 collect_symbols:: AMPLCODE  -> SYM_TBL
 collect_symbols ( AMPLcode hs chs cs ds ps fs _ ) = st
      where
