@@ -1,0 +1,41 @@
+--
+--  Higher order application
+--
+%handles:
+     IntTerm =
+        Get
+        Put
+        Close
+%cohandles:
+      Console =
+        Get
+        Put
+        Close
+%destructors:
+     Exp =
+       App 1
+
+
+%run ( | console => intTerm1) :
+     hput intTerm1  IntTerm.Get
+     get intTerm1
+     store x
+     rec of 
+           Exp.App: cInt 2
+                    load y
+                    add
+                    fret
+     store y
+     load y
+     Exp.App (x)
+     store ans
+     load ans
+     hput intTerm1  IntTerm.Put
+     put intTerm1
+     hput intTerm1  IntTerm.Close
+     close intTerm1 
+     hput console Console.Close
+     halt console
+
+     
+     

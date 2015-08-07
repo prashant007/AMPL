@@ -32,28 +32,4 @@
      halt console  
 
 
-{- 
 
-(([],[(0,IN,0),(-1,OUT,-1),(-2,OUT,-2)],[],
-
-     AMC_HPUT (-1) 1
-     AMC_GET (-1)
-     AMC_STORE
-     AMC_LOAD 1
-     AMC_HPUT (-2) 2
-     AMC_PUT (-2)
-     AMC_HPUT (-2) 1
-     AMC_STORE
-     AMC_LOAD 1
-     AMC_HPUT (-1) 2
-     AMC_PUT (-1)
-     AMC_HPUT (-2) 3
-     AMC_CLOSE (-2)
-     AMC_HPUT (-1) 3
-     AMC_CLOSE (-1)
-     AMC_HPUT 0 3
-     AMC_HALT 0
-
-),([0,-1,-2],[(0,Q_EMPTY,Q_EMPTY),(-1,Q_EMPTY,Q_EMPTY),(-2,Q_EMPTY,Q_EMPTY)]),[])
-
--}

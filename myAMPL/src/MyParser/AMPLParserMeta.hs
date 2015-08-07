@@ -75,7 +75,7 @@ Functions  .FUNCTIONS ::= "%functions" ":" "{" [FUNCTION_SPEC] "}" ;
 Functions_none .FUNCTIONS ::= ;
 separator FUNCTION_SPEC ";" ;
 
-Function_spec  .FUNCTION_SPEC ::= UIdent "(" [Vars] ")" "="      ;
+Function_spec  .FUNCTION_SPEC ::= UIdent "(" [Vars] ")" "=" COMS    ;
  
 Start  .START   ::= "%run" CHANNEL_SPEC ":" COMS ;
 
@@ -87,6 +87,7 @@ separator COM ";"  ;
   
 AC_STOREf  .COM   ::= "store" Ident;
 AC_LOADf   .COM   ::= "load" Ident ;
+AC_RET     .COM   ::= "ret" ;
 AC_FRET    .COM   ::= "fret" ;
 AC_CALLf   .COM   ::= "call" Ident "(" [Ident] ")" ;
 AC_INT     .COM   ::= "cInt" CInteger ;
