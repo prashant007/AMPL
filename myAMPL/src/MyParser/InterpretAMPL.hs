@@ -7,7 +7,6 @@ import Semantics.AMPL_am
 --------------------------------------------------------------------------------------
 --  Global Symbol table 
 --------------------------------------------------------------------------------------
-
 data SYM_ENTRY = S_HAND   [(String,Int)]
                | S_CHAND  [(String,Int)]
                | S_CONSTR [(String,Int,Int)]
@@ -25,6 +24,7 @@ data SYM_VALUES = SYM_CONSTR Int Int
                 | SYM_FUN Int
                 | SYM_PROCESS Int (Int,Int)
    deriving (Eq,Show)
+
 
 collect_symbols:: AMPLCODE  -> SYM_TBL
 collect_symbols ( AMPLcode hs chs cs ds ps fs _ ) = st
@@ -204,7 +204,6 @@ services_AMPL OUT "intTerm3" = -3
 services_AMPL OUT "intTerm4" = -4
 services_AMPL OUT "intTerm5" = -5
 services_AMPL _ str = error ("Service <"++str++"> not supported.")
-
 
 compile_all prog@(AMPLcode _ _ _ _ ps fs cs) = (mach_st,chm, defns)
    where  sym = collect_symbols prog

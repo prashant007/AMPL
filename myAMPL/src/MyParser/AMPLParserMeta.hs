@@ -66,7 +66,7 @@ Processes. PROCESSES  ::= "%processes" ":" "{" [PROCESS_SPEC] "}" ;
 Processes_none. PROCESSES ::= ;
 separator PROCESS_SPEC ";" ;
 
-Process_spec. PROCESS_SPEC ::= UIdent ":" [Vars] "|" [Ident] "=>" [Ident] "=" COMS ;
+Process_spec. PROCESS_SPEC ::= Ident "(" [Vars] "|" [Ident] "=>" [Ident] ")" "=" COMS ;
 
 VName  .Vars ::= Ident ;
 separator Vars ",";
@@ -75,11 +75,11 @@ Functions  .FUNCTIONS ::= "%functions" ":" "{" [FUNCTION_SPEC] "}" ;
 Functions_none .FUNCTIONS ::= ;
 separator FUNCTION_SPEC ";" ;
 
-Function_spec  .FUNCTION_SPEC ::= UIdent "(" [Vars] ")" "=" COMS    ;
+Function_spec  .FUNCTION_SPEC ::= Ident "(" [Vars] ")" "=" COMS    ;
  
 Start  .START   ::= "%run" CHANNEL_SPEC ":" COMS ;
 
-Channel_specf .CHANNEL_SPEC ::= "(" "|" [Ident] "=>" [Ident] ")";
+Channel_specf .CHANNEL_SPEC ::= "("  "|" [Ident] "=>" [Ident] ")";
 Channel_spec .CHANNEL_SPEC ::= "(" [CInteger] "=>" [CInteger] ")";
 
 Prog    .COMS  ::= "{" [COM] "}"; 
@@ -98,25 +98,22 @@ AC_CONS    .COM   ::= "cons" "(" Integer "," Integer ")" ;
 AC_STRUCT  .COM   ::= UIdent "." UIdent ;
 AC_STRUCTas.COM   ::= UIdent "." UIdent "(" [Ident] ")" ;
 AC_CASEf   .COM   ::= "case" "of"  "{" [LABELCOMS] "}"  ; 
-Labelcoms . LABELCOMS ::= UIdent "." UIdent ":" COMS ;
+Labelcoms1 . LABELCOMS ::= UIdent "." UIdent ":" COMS ;
+Labelcoms2 . LABELCOMS ::= UIdent "." UIdent "(" [Ident] ")" ":" COMS ;
 separator COMS ",";
 separator LABELCOMS ";";
 
-AC_RECORD  .COM ::= "rec" "[" [COMS] "]" ;
 AC_RECORDf .COM ::= "rec" "of"  "{" [LABELCOMS] "}"  ;
 AC_DEST    .COM ::= "dest" Integer Integer ;
-AC_GET     .COM ::= "get" CInteger ; 
 AC_GETf    .COM ::= "get" Ident ; 
-AC_HPUT    .COM ::= "hput"  CInteger  Integer ; 
 AC_HPUTf   .COM ::= "hput" Ident  UIdent "." UIdent;
-AC_HCASE   .COM ::= "hcase" CInteger "of" "[" [COMS] "]"  ; 
 AC_HCASEf  .COM ::= "hcase" Ident "of"  "{" [LABELCOMS] "}"  ; 
 AC_PUTf    .COM ::= "put" Ident ;
-AC_SPLIT   .COM ::= "split" CInteger "into" CInteger  CInteger ;
 AC_SPLITf  .COM ::= "split"Ident "into" Ident Ident    ;
 AC_FORKf   .COM ::= "fork" Ident "as" "{" Ident "with" [Ident] "as" COMS ";" Ident "with" [Ident] "as" COMS "}" ;
-AC_PLUGf   .COM ::= "plug" NIdent "as" "{" "[" [Ident] "]" "with" COMS ";" "[" [Ident] "]" "with" COMS "}" ;
-AC_RUNf     .COM ::= "run" UIdent "(" [Ident] "|" [Ident] "=>" [Ident] ")" ;
+AC_PLUGf   .COM ::= "plug" Ident  "with" "{" "[" [Ident] "]" ":" COMS ";" "[" [Ident] "]" ":" COMS "}" ;
+AC_RUNf    .COM ::= "run" Ident "(" [Ident] "|" [Ident] "=>" [Ident] ")" ;
+
 
 separator nonempty NCInteger "," ;
 separator nonempty NIdent "," ;
@@ -127,7 +124,7 @@ TranIn11. TRAN ::= "(" Integer "," "IN" "," Integer ")" ;
 TranIn12. TRAN ::= "(" Integer "," "OUT" "," Integer ")" ;
 
 Ncinteger .NCInteger ::= CInteger ;
-Nident .NIdent ::= Ident ;
+Nident1 .NIdent ::= Ident ;
 
 AC_CLOSEf  .COM ::= "close" Ident ;
 AC_HALTf   .COM ::= "halt" Ident ;

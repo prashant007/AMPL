@@ -68,7 +68,7 @@ transPROCESSES x = case x of
 
 
 transPROCESS_SPEC x = case x of
-  Process_spec uident varss ids1 ids2 coms3  -> T.Process_specf (transUIdent uident) (map transVars varss) ((map transIdent ids1),
+  Process_spec ident varss ids1 ids2 coms3  -> T.Process_specf (transIdent ident) (map transVars varss) ((map transIdent ids1),
                                                  (map transIdent ids2)) (transCOMS coms3)
 
 transVars x = case x of
@@ -81,7 +81,7 @@ transFUNCTIONS x = case x of
 
 
 transFUNCTION_SPEC x = case x of
-  Function_spec uident varss coms  -> T.Function_specf (transUIdent uident) (map transVars varss) (transCOMS coms)
+  Function_spec ident varss coms  -> T.Function_specf (transIdent ident) (map transVars varss) (transCOMS coms)
 
 
 transSTART x = case x of
@@ -103,6 +103,7 @@ transCOM x = case x of
   AC_STOREf id  -> T.AC_STOREf (transIdent id)
   AC_LOADf id  -> T.AC_LOADf (transIdent id)
   AC_FRET  -> T.AC_FRET
+  AC_RET  -> T.AC_RET
   AC_CALLf id ids  -> T.AC_CALLf (transIdent id) (map transIdent ids)
   AC_INT cinteger  -> T.AC_INT $ transCInteger cinteger
   AC_LEQ  -> T.AC_LEQ
@@ -124,10 +125,10 @@ transCOM x = case x of
   AC_FORKf id1 id2 ids3 coms4 id5 ids6 coms7  -> T.AC_FORKf (transIdent id1) (c1,c2)
                                                     where c1 = (transIdent id2,(map transIdent ids3),transCOMS coms4)
                                                           c2 = (transIdent id5,(map transIdent ids6),transCOMS coms7)
-  AC_PLUGf nident ids1 coms2 ids3 coms4  -> T.AC_PLUGf (transNIdent nident)
+  AC_PLUGf ident ids1 coms2 ids3 coms4  -> T.AC_PLUGf (transIdent ident)
                                                         ((map transIdent ids1),(transCOMS coms2))
                                                         ((map transIdent ids3),(transCOMS coms4))
-  AC_RUNf uident ids1 ids2 ids3  -> T.AC_RUNf (transUIdent uident)
+  AC_RUNf ident ids1 ids2 ids3  -> T.AC_RUNf (transIdent ident)
                                               (map transIdent ids1)
                                               ((map transIdent ids1),(map transIdent ids1)) 
   AC_CLOSEf id  -> T.AC_CLOSEf (transIdent id)
@@ -138,8 +139,9 @@ transCOM x = case x of
 
 
 transLABELCOMS x = case x of
-  Labelcoms uident1 uident2 coms3  -> (((transUIdent uident1),(transUIdent uident1)),[],(transCOMS coms3))
-
+  Labelcoms1 uident1 uident2 coms3  -> (((transUIdent uident1),(transUIdent uident1)),[],(transCOMS coms3))
+  Labelcoms2 uident1 uident2 idents coms3  -> (((transUIdent uident1),(transUIdent uident1)),
+                                               (map transIdent idents),(transCOMS coms3))
 
 transTRAN x = case x of
   TranIn11 n1 n2  -> ((fromIntegral n1),T.IN ,(fromIntegral n2))
@@ -151,7 +153,7 @@ transNCInteger x = case x of
 
 
 transNIdent x = case x of
-  Nident id  -> transIdent id 
+  Nident1 id  -> transIdent id 
 
 
 transCInteger x = case x of

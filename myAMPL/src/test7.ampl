@@ -34,8 +34,8 @@
            Ready 0
 
 
-%processes :
-        intlistTerm ( d | ch => out) =
+%processes:
+        intlistTerm( d | ch => out) =
            load d
            case of
                 GPt.Ready :              -- intlistTerm process is ready for input from calling routine
@@ -43,7 +43,7 @@
                        IntLTerm.Get : 
                               List.Nil; store x
                               GPt.Gt(x); store y
-                              run intlistTerm ( y | ch => out) 
+                              run intlistTerm( y | ch => out) 
                        IntLTerm.Put : 
                               get ch; store x 
                               GPt.Pt(x); store w
@@ -112,7 +112,7 @@
                ret  
 
 
-%run (| console => intTerm1):
+%run (| console => intTerm1) :
         plug ch with
              [console]:   -- this process collects two lists (outputing [1000] in between) 
                           -- appends the lists and outputs the result

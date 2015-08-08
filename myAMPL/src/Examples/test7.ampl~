@@ -43,7 +43,7 @@
                        IntLTerm.Get : 
                               List.Nil; store x
                               GPt.Gt(x); store y
-                              run intlistTerm ( y | ch => out) 
+                              run intlistTerm( y | ch => out) 
                        IntLTerm.Put : 
                               get ch; store x 
                               GPt.Pt(x); store w

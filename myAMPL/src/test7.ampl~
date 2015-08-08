@@ -34,8 +34,8 @@
            Ready 0
 
 
-%processes :
-        intlistTerm ( d | ch => out) =
+%processes:
+        intlistTerm( d | ch => out) =
            load d
            case of
                 GPt.Ready :              -- intlistTerm process is ready for input from calling routine
@@ -43,7 +43,7 @@
                        IntLTerm.Get : 
                               List.Nil; store x
                               GPt.Gt(x); store y
-                              run intlistTerm ( y | ch => out) 
+                              run intlistTerm( y | ch => out) 
                        IntLTerm.Put : 
                               get ch; store x 
                               GPt.Pt(x); store w
@@ -61,8 +61,8 @@
                    leq ; store b
                    load b
                    case  of
-                      Bool.True:
-                          call reverse(xs)
+                      Bool.True :
+                          call reverse (xs)
                           put ch
                           GPt.Ready; store w
                           run intlistTerm( w | ch => out)
@@ -92,7 +92,7 @@
                            load y
                            ret
                     List.Cons(x,xs):
-                            call append(xs,y); store w
+                            call append(xs,y); store w   —- w := append(xs,y)
                             List.Cons(x,w)
                             ret
                ret
@@ -105,8 +105,8 @@
                         ret
                     List.Cons(x,xs):
                          call reverse(xs); store rxs
-                         List.Nil; store v
-                         List.Cons(x,v);store vv
+                         List.Nil; store v              —- v:= List.Nil
+                         List.Cons(x,v);store vv        —- vv:= List.Cons(x,v)
                          call append(rxs,vv)
                          ret 
                ret  
@@ -117,7 +117,7 @@
              [console]:   -- this process collects two lists (outputing [1000] in between) 
                           -- appends the lists and outputs the result
                                hput ch IntLTerm.Get
-                               get ch; store v1
+                               get ch; store v1        —- v1 := get ch /get v1 on ch
                                List.Nil; store n
                                cInt 1000; store m
                                List.Cons(m,n)
