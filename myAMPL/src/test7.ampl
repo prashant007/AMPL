@@ -92,7 +92,7 @@
                            load y
                            ret
                     List.Cons(x,xs):
-                            call append(xs,y); store w
+                            call append(xs,y); store w   
                             List.Cons(x,w)
                             ret
                ret
@@ -105,19 +105,19 @@
                         ret
                     List.Cons(x,xs):
                          call reverse(xs); store rxs
-                         List.Nil; store v
-                         List.Cons(x,v);store vv
+                         List.Nil; store v              
+                         List.Cons(x,v);store vv        
                          call append(rxs,vv)
                          ret 
                ret  
 
 
-%run (| console => intTerm1) :
+%run (| console => intTerm1):
         plug ch with
              [console]:   -- this process collects two lists (outputing [1000] in between) 
                           -- appends the lists and outputs the result
                                hput ch IntLTerm.Get
-                               get ch; store v1
+                               get ch; store v1        
                                List.Nil; store n
                                cInt 1000; store m
                                List.Cons(m,n)

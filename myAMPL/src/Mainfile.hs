@@ -40,7 +40,13 @@ main = do
        Ok  tree  -> do
         let  convOutPut  =  transAMPLCODE tree 
              compiled = (compile_all convOutPut)
+        putStrLn "**************************************************************************"     
+        putStrLn "**************************ABSTRACT SYNTAX TREE****************************"
+        putStrLn "**************************************************************************"     
         ppStyle zigStyle convOutPut
+        putStrLn "**************************************************************************"     
+        putStrLn "**************************INTERPRETER RESULT******************************"
+        putStrLn "**************************************************************************"    
         ppStyle zigStyle (compiled::(T.PROCESS,T.CHM,T.DEFNS))
         ans <- run_cm' compiled
         putStrLn (show (ans::T.MACH))

@@ -63,12 +63,12 @@
   (major1) == 2 && (major2) <  6 || \
   (major1) == 2 && (major2) == 6 && (minor) <= 2)
 
-/* package pretty-1.1.1.0 */
-#define VERSION_pretty "1.1.1.0"
+/* package pretty-1.1.3.2 */
+#define VERSION_pretty "1.1.3.2"
 #define MIN_VERSION_pretty(major1,major2,minor) (\
   (major1) <  1 || \
   (major1) == 1 && (major2) <  1 || \
-  (major1) == 1 && (major2) == 1 && (minor) <= 1)
+  (major1) == 1 && (major2) == 1 && (minor) <= 3)
 
 /* package process-1.1.0.2 */
 #define VERSION_process "1.1.0.2"

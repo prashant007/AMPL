@@ -43,7 +43,7 @@
                        IntLTerm.Get : 
                               List.Nil; store x
                               GPt.Gt(x); store y
-                              run intlistTerm( y | ch => out) 
+                              run intlistTerm ( y | ch => out) 
                        IntLTerm.Put : 
                               get ch; store x 
                               GPt.Pt(x); store w
@@ -92,8 +92,8 @@
                            load y
                            ret
                     List.Cons(x,xs):
-                            call append(xs,y); store w
-                            List.Cons(x,w)
+                            call append(xs,y); store z
+                            List.Cons(x,z)
                             ret
                ret
 

@@ -214,7 +214,7 @@ find_service (names,(0,Q_EMPTY,Q_HPUT 3 q):chs) = do
 -------------------------------------------------------------------------------------
 find_service (names,(n,Q_HPUT 1 (Q_GET (s,t,e,c)),Q_EMPTY):chs) = do
                     putStrLn ("Opening Channel "++(show n))
-                    let comm = "x-terminal-emulator -e \"bash -c ' echo Please enter a number ;  nc localhost 44447 ' \" "
+                    let comm = "x-terminal-emulator -e \"bash -c ' echo Please enter a number ; nc localhost 44447 ' \" "
                     x <- runCommand $ comm 
                     snum <- communicate (fromInteger 44447)
                     let num = (read snum ):: Int  
@@ -309,7 +309,11 @@ process_step (s,t,e,[AMC_RUN t' pn m]) chs defs = ([([],t'',e',c)], chs)
            where e' = take m s
                  c = lookup_defn pn defs
                  t'' = compose_trans t' t
--------------------------------------------------------------        
+-------------------------------------------------------------  
+process_step (s,t,e,(AMC_ID st1 st2):c) chs defs = ([(s,t',e,c)],chs)
+           where (ch,pol) = lookup_t st2 t
+                 t' = (st1,pol,ch):t
+----------------------------------------------------------------      
 process_step (s,t,e,c) chs defs = ([(s',t,e',c')],chs)
    where
       (c',e',s') = seq_step (c,e,s) defs

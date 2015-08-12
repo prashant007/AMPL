@@ -92,8 +92,8 @@
                            load y
                            ret
                     List.Cons(x,xs):
-                            call append(xs,y); store w
-                            List.Cons(x,w)
+                            call append(xs,y); store z
+                            List.Cons(x,z)
                             ret
                ret
 

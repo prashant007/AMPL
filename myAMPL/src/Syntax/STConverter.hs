@@ -130,7 +130,7 @@ transCOM x = case x of
                                                         ((map transIdent ids3),(transCOMS coms4))
   AC_RUNf ident ids1 ids2 ids3  -> T.AC_RUNf (transIdent ident)
                                               (map transIdent ids1)
-                                              ((map transIdent ids1),(map transIdent ids1)) 
+                                              ((map transIdent ids2),(map transIdent ids3)) 
   AC_CLOSEf id  -> T.AC_CLOSEf (transIdent id)
   AC_HALTf id  -> T.AC_HALTf (transIdent id)
   
@@ -139,8 +139,8 @@ transCOM x = case x of
 
 
 transLABELCOMS x = case x of
-  Labelcoms1 uident1 uident2 coms3  -> (((transUIdent uident1),(transUIdent uident1)),[],(transCOMS coms3))
-  Labelcoms2 uident1 uident2 idents coms3  -> (((transUIdent uident1),(transUIdent uident1)),
+  Labelcoms1 uident1 uident2 coms3  -> (((transUIdent uident1),(transUIdent uident2)),[],(transCOMS coms3))
+  Labelcoms2 uident1 uident2 idents coms3  -> (((transUIdent uident1),(transUIdent uident2)),
                                                (map transIdent idents),(transCOMS coms3))
 
 transTRAN x = case x of

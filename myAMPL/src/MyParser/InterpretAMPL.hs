@@ -7,6 +7,10 @@ import Semantics.AMPL_am
 --------------------------------------------------------------------------------------
 --  Global Symbol table 
 --------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+--  Global Symbol table 
+--------------------------------------------------------------------------------------
+
 data SYM_ENTRY = S_HAND   [(String,Int)]
                | S_CHAND  [(String,Int)]
                | S_CONSTR [(String,Int,Int)]
@@ -194,9 +198,12 @@ compile_run sym (Channel_spec in_chs out_chs,coms) = (trans,code)
          trans = (map (\x -> if x <= 0 then (x,IN, x) else error "Services on positive channels not provided.") in_chs) 
                    ++ (map (\x -> if x <= 0 then (x,OUT, x) else error "Services on positive channels not provided.") out_chs)
 
+------------------------------------------------------------------------------------------------------
 --
 -- Services provided by AMPL
 --
+------------------------------------------------------------------------------------------------------
+
 services_AMPL IN "console" = 0
 services_AMPL OUT "intTerm1" = -1
 services_AMPL OUT "intTerm2" = -2
@@ -446,7 +453,7 @@ compile_process sym stack trans ((AC_FORK ch ((ch1,chs1,cs1),(ch2,chs2,cs2))): r
    = (AMC_FORK ch ((ch1,chs1,compile_process sym stack trans cs1),(ch2,chs2,compile_process sym stack trans cs2))
                     ):(compile_process sym stack trans rest)
 
-compile_process sym stack trans ((AC_PLUGf chn (chns1,cs1) (chns2,cs2)):[] )
+compile_process sym stack trans ((AC_PLUGf chn (chns1,cs1) (chns2,cs2)):[] )  -- need to allow plugging on multiple channels
    = (AMC_PLUG [ch] (chs1,compile_process sym stack trans1 cs1) 
                     (chs2,compile_process sym stack trans2 cs2)):[] 
      where
@@ -462,6 +469,11 @@ compile_process sym stack trans ((AC_PLUG chlist (chs1,c1) (chs2,c2)):[])
                    (chs2,compile_process sym stack trans c2)):[] 
      where
         chs = map (\(ch,_,_) -> ch) chlist
+
+compile_process sym stack trans ((AC_ID ch1 ch2):c)
+   = (AMC_ID ch1 ch2):(compile_process sym stack trans c)
+compile_process sym stack trans ((AC_IDf chn1 chn2):c)
+   = (AMC_ID (translate trans chn1) (translate trans chn2)):(compile_process sym stack trans c)
 
 compile_process sym stack trans ((AC_CLOSEf str):rest) 
    = (AMC_CLOSE cn):(compile_process sym stack trans rest)
