@@ -1,6 +1,3 @@
---
---  Higher order application
---
 %handles:
      IntTerm =
         Get
@@ -20,13 +17,13 @@
      hput intTerm1  IntTerm.Get
      get intTerm1
      store x
+     load x 
      rec of 
            Exp.App(y): cInt 2
                        load y
                        add
                        fret
      store y
-     load x
      load y
      Exp.App (x)
      store ans
@@ -37,3 +34,4 @@
      close intTerm1 
      hput console Console.Close
      halt console
+

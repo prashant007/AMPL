@@ -1,0 +1,28 @@
+--
+--  A fancy version of test1!
+--
+%handles:
+     IntTerm =
+        Get
+        Put
+        Close
+%cohandles:
+      Console =
+        Get
+        Put
+        Close
+%run ( | console => outTerm1) :
+     hput outTerm1  IntTerm.Get
+     get outTerm1; store x
+     hput outTerm1 IntTerm.Get
+     get outTerm1; store y
+     load x
+     load y
+     add
+     hput outTerm1 IntTerm.Put
+     put  outTerm1
+     hput outTerm1 IntTerm.Close
+     close outTerm1
+     hput console Console.Close
+     halt console
+     

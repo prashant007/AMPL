@@ -1,0 +1,88 @@
+1 --DiffieHellman key exchange
+%handles:
+     IntTerm =
+        Get
+        Put
+        Close
+
+%cohandles:
+      Console =
+        Get
+        Put
+        Close
+
+
+%processes:
+    alice (agreedKey1,agreedKey2 | secretA,messageA => cipher) =
+              get secretA ;store skey
+              call power   (agreedKey2,skey);store val1
+              call modulus (val1,agreedKey1);store val2
+              load val2
+              put cipher
+              get cipher  ; store bkey
+              get messageA ; store msg
+              call power (bkey,skey) ; store val3
+              call modulus (val1,agreedKey1) ; store val4
+              call encode (msg,val4) ; store val5
+              load val5
+              put cipher
+              hput messageA Console.Close
+              close messageA
+              hput secretA Console.Close
+              close secretA
+              halt cipher
+              
+    bob (agreedKey1,agreedKey2 | cipher => secretB, messageB) = 
+                  get secretB ; store skey1
+                  get cipher  ; store bkey1
+                  call power (agreedKey2,skey1);store val6
+                  call modulus (val6,agreedKey1);store val7
+                  load val7
+                  put cipher
+                  get cipher; store enmsg
+                  call power (bkey1,skey1) ; store val8
+                  call modulus (val8,agreedKey1) ; store val9
+                  call decode (enmsg,val9) ;store val10
+                  load val10
+                  put messageB
+                  hput secretB IntTerm.Close
+                  close secretB
+                  hput messageB IntTerm.Close
+                  close messageB
+                  halt cipher
+                  
+    aliceBob (agreedKey1,agreedKey2|secretA, messageA => secretB, messageB) =  
+                 plug cipher as
+                    with  [secretA,messageA] : 
+                                 run  alice(agreedKey1, agreedKey2 | secretA, messageA  => cipher)                      
+                    with  [secretB,messageB] : 
+                                 run  bob(agreedKey1, agreedKey2   | cipher => secretB, messageB)    
+                      
+
+%functions :
+    power (x,y)  = 
+               load x
+               load y
+               add 
+               ret
+    modulus(x,y) =
+              load y
+              load x
+              rem
+              ret
+    encode(m,k) =
+              load m
+              load k
+              add
+              ret
+    decode(m,k) =
+             load m
+             load k
+             add
+             ret
+             
+%run (| console => intTerm1):                                           
+                
+    
+
+

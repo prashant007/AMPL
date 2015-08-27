@@ -112,10 +112,11 @@
                ret  
 
 
+
 %run (| console => intTerm1):
-        plug ch with
-             [console]:   -- this process collects two lists (outputing [1000] in between) 
-                          -- appends the lists and outputs the result
+        plug ch as 
+            with [console]:    -- this process collects two lists (outputing [1000] in between) 
+                               -- appends the lists and outputs the result
                                hput ch IntLTerm.Get
                                get ch; store v1        
                                List.Nil; store n
@@ -132,7 +133,7 @@
                                close ch
                                hput console Console.Close
                                halt console
-             [intTerm1]: 
+            with [intTerm1]: 
                                GPt.Ready; store w
                                run intlistTerm(w|ch => intTerm1) 
                    

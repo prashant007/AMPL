@@ -106,8 +106,10 @@ transCOM x = case x of
   AC_RET  -> T.AC_RET
   AC_CALLf id ids  -> T.AC_CALLf (transIdent id) (map transIdent ids)
   AC_INT cinteger  -> T.AC_INT $ transCInteger cinteger
-  AC_LEQ  -> T.AC_LEQ
-  AC_ADD  -> T.AC_ADD
+  AC_LEQ   -> T.AC_LEQ
+  AC_ADD   -> T.AC_ADD
+  AC_DIV_Q -> T.AC_DIV_Q
+  AC_DIV_R -> T.AC_DIV_R 
   AC_MUL  -> T.AC_MUL
   AC_CONS n1 n2  -> T.AC_CONS (fromIntegral n1) (fromIntegral n2)
   AC_STRUCT uident1 uident2  -> T.AC_STRUCT ((transUIdent uident1) ,(transUIdent uident2)) []
@@ -133,6 +135,7 @@ transCOM x = case x of
                                               ((map transIdent ids2),(map transIdent ids3)) 
   AC_CLOSEf id  -> T.AC_CLOSEf (transIdent id)
   AC_HALTf id  -> T.AC_HALTf (transIdent id)
+  AC_IDF id1 id2 -> T.AC_IDf (transIdent id1) (transIdent id2)
   
 
 
@@ -160,20 +163,6 @@ transCInteger x = case x of
   Positive n  -> (fromIntegral n)
   Negative n  -> (fromIntegral n)
 
-someRandomFunc = do
-   putStrLn "Enter a test file"
-   progName  <- getLine
-   prog      <- readFile progName
-   let lexOutPut   =  myLLexer prog
-       parOutPut   =  pAMPLCODE lexOutPut
-   case parOutPut of
-       Bad s     -> putStrLn $ "error in parsing" ++ s
-       Ok  tree  -> do
-        let  convOutPut  =  transAMPLCODE tree 
-             compiled = (compile_all convOutPut)
-        putStrLn $ show convOutPut
-        putStrLn (show (compiled::(T.PROCESS,T.CHM,T.DEFNS)))
-        ans <- run_cm' compiled
-        putStrLn (show (ans::T.MACH))
+
                     
 

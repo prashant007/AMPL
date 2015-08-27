@@ -1,0 +1,338 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.7.28)  13 AUG 2015 19:50
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Docparser.tex
+(./Docparser.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 2 languages loaded.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (./Docparser.aux)
+\openout1 = `Docparser.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 26.
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--58
+
+ []
+
+[1
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 62.
+
+LaTeX Font Info:    No file OMScmtt.fd. on input line 62.
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 62.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--71
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--80
+
+ []
+
+
+Overfull \hbox (327.83028pt too wide) in paragraph at lines 81--84
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--84
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--92
+
+ []
+
+
+Overfull \hbox (11.1313pt too wide) in paragraph at lines 93--98
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--98
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--103
+
+ []
+
+[2]
+Overfull \hbox (23.7533pt too wide) in paragraph at lines 104--108
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--108
+
+ []
+
+
+Overfull \hbox (9.18375pt too wide) in paragraph at lines 109--113
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--113
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--121
+
+ []
+
+
+Overfull \hbox (56.30008pt too wide) in paragraph at lines 122--127
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 128--132
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--137
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--142
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--147
+
+ []
+
+
+Overfull \hbox (22.99379pt too wide) in paragraph at lines 148--153
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--153
+
+ []
+
+
+Overfull \hbox (93.53018pt too wide) in paragraph at lines 154--157
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--157
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--161
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--167
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--172
+
+ []
+
+
+Overfull \hbox (49.45638pt too wide) in paragraph at lines 173--178
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--178
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--182
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 183--186
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--201
+
+ []
+
+
+Overfull \hbox (201.4475pt too wide) in paragraph at lines 202--230
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--230
+
+ []
+
+
+Overfull \hbox (2.7666pt too wide) in paragraph at lines 231--235
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 231--235
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 236--241
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 242--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--252
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--263
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--277
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--281
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--285
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--290
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 291--296
+
+ []
+
+[5] (./Docparser.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 252 strings out of 495029
+ 2750 string characters out of 6181523
+ 61042 words of memory out of 5000000
+ 3534 multiletter control sequences out of 15000+600000
+ 9370 words of font info for 33 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 21i,9n,19p,378b,185s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Docparser.dvi (5 pages, 12816 bytes).

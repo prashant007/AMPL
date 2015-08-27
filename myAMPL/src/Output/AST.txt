@@ -1,0 +1,39 @@
+AMPLcode [Handle_spec "IntTerm"
+                      ["Get",
+                       "Put",
+                       "Close"]]
+         [Handle_spec "Console"
+                      ["Get",
+                       "Put",
+                       "Close"]]
+         []
+         []
+         []
+         []
+         (Channel_specf ["console"]
+                        ["intTerm1"],
+          [AC_HPUTf "intTerm1"
+                    ("IntTerm",
+                     "Get"),
+           AC_GETf "intTerm1",
+           AC_STOREf "x",
+           AC_HPUTf "intTerm1"
+                    ("IntTerm",
+                     "Get"),
+           AC_GETf "intTerm1",
+           AC_STOREf "y",
+           AC_LOADf "x",
+           AC_LOADf "y",
+           AC_ADD,
+           AC_HPUTf "intTerm1"
+                    ("IntTerm",
+                     "Put"),
+           AC_PUTf "intTerm1",
+           AC_HPUTf "intTerm1"
+                    ("IntTerm",
+                     "Close"),
+           AC_CLOSEf "intTerm1",
+           AC_HPUTf "console"
+                    ("Console",
+                     "Close"),
+           AC_HALTf "console"])
